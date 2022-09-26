@@ -11,7 +11,6 @@ public class TrackerClient implements AutoCloseable {
     private final ManagedChannel channel;
 
     public TrackerClient(TrackerConfig config) {
-        System.out.println("Creating client using:" + config.url.toExternalForm());
         this.config = config;
         this.channel = ManagedChannelBuilder.forAddress(config.url.getHost(), config.url.getPort())
                 .usePlaintext()
