@@ -1,0 +1,5 @@
+name: quarkus-gps-tracking-client
+title: Quarkus - Gps Tracking Client
+version: dev
+nav:
+  - modules/ROOT/nav.adoc
