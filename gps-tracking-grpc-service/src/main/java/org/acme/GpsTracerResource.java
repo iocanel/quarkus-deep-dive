@@ -16,13 +16,15 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.jboss.resteasy.reactive.RestSseElementType;
+import org.jboss.resteasy.reactive.RestStreamElementType;
 
 @Path("/gps")
 public class GpsTracerResource {
 
     @GET
     @Path("track")
-    @Produces(MediaType.SERVER_SENT_EVENTS)
+    @RestStreamElementType(MediaType.TEXT_PLAIN)
     public Multi<String> getPositions() {
          try {
             AtomicInteger index = new AtomicInteger();
