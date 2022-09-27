@@ -24,7 +24,7 @@ public class GpsTracerResource {
 
     @GET
     @Path("track")
-    @RestStreamElementType(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.SERVER_SENT_EVENTS)
     public Multi<String> getPositions() {
          try {
             AtomicInteger index = new AtomicInteger();
@@ -38,7 +38,7 @@ public class GpsTracerResource {
             return Multi.createFrom().ticks().every(Duration.ofSeconds(1)).map(t -> {
                 int i = index.getAndAccumulate(positions.size(), (prev, limit) -> prev >= limit - 1 ? 0 : prev + 1);
                 return positions.get(i);
-            }).map(p-> p.getLatitude() + " - " + p.getLongitude() + "\n");
+            }).map(p-> p.getLatitude() + " - " + p.getLongitude());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
