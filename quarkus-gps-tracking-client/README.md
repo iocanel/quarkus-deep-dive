@@ -57,6 +57,8 @@ public class TrackerConfig {
 ```
 
 ### Create the Client
+
+```java
 package org.acme.tracker.client;
 
 import org.acme.tracker.runtime.TrackerConfig;
@@ -85,6 +87,8 @@ public class TrackerClient implements AutoCloseable {
         channel.shutdown();
     }
 }
+```
+
 ### Create the Recorder
 
 ```java
