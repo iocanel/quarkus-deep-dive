@@ -27,7 +27,7 @@ curl https://raw.githubusercontent.com/iocanel/quarkus-deep-dive/main/gps-tracki
 ### Add the module to the project
 
 ```sh
-sed -i '/<module>runtime/a <module>grpc<module>' pom.xml
+sed -i '/<module>runtime/a <module>grpc</module>' pom.xml
 ```
 
 ### Add the grpc dependency to runtime
