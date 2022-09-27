@@ -1,8 +1,5 @@
 package org.acme;
 
-import java.time.Duration;
-
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,8 +15,11 @@ import io.smallrye.mutiny.Multi;
 @Path("/gps")
 public class TrackerResource {
 
-  @Inject
-  TrackerClient client;
+  private final TrackerClient client;
+
+  public TrackerResource(TrackerClient client) {
+    this.client = client;
+  }
 
   @GET
   @Path("/track")
