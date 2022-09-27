@@ -1,0 +1,7 @@
+* React Template
+
+
+[[../../actions/workflows/build.yml/badge.svg]]
+
+
+A simple react project template.
