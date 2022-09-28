@@ -29,16 +29,16 @@ public class GpsTracerResource {
          try {
             AtomicInteger index = new AtomicInteger();
 
-            List<Tracker.Position> positions = readLines(Thread.currentThread().getContextClassLoader().getResourceAsStream("/tracking-data"))
+            List<Tracker.Position> positions = readLines(Thread.currentThread().getContextClassLoader().getResourceAsStream("/monza-data"))
                     .map(l -> Tracker.Position.newBuilder()
                             .setLatitude(Double.parseDouble(l.substring(0, l.indexOf(" "))))
                             .setLongitude(Double.parseDouble(l.substring(l.indexOf(" ") + 1)))
                             .build()).collect(Collectors.toList());
 
-            return Multi.createFrom().ticks().every(Duration.ofSeconds(1)).map(t -> {
+            return Multi.createFrom().ticks().every(Duration.ofMillis(100)).map(t -> {
                 int i = index.getAndAccumulate(positions.size(), (prev, limit) -> prev >= limit - 1 ? 0 : prev + 1);
                 return positions.get(i);
-            }).map(p-> p.getLatitude() + " - " + p.getLongitude());
+            }).map(p-> p.getLatitude() + " " + p.getLongitude());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
