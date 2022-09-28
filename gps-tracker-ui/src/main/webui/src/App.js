@@ -16,6 +16,8 @@ export default function SimpleMap(){
   const [latitude, setLatitude] = useState(defaultLat);
   const [longtitude, setLongtitude] = useState(defaultLng);
 
+  const apiKey = "";
+
   useEffect(() => {
     const sse = new EventSource('http://localhost:8080/gps/track');
     const getPostion = (data) => {
@@ -37,7 +39,7 @@ export default function SimpleMap(){
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "" }}
+        bootstrapURLKeys={{ key: apiKey }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom} >
         <Marker
